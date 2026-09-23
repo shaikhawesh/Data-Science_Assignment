@@ -1,0 +1,28 @@
+
+# Install MySQL or PostgreSQL on your system and create a new database named 'music_streaming_app' using the command line or GUI tool of your choice.
+
+create database music_streaming_app;
+# Inside the 'music_streaming_app' database, create a table called 'playlists' with columns: playlist_id (integer, primary key), name (varchar), and created_by (varchar).
+
+create table playlists(
+		playlist_id  int auto_increment,
+        name varchar(30) not null,
+        created_by varchar(30) not null,
+        
+        primary key(playlist_id)
+)
+# Insert three sample rows into the 'playlists' table representing playlists like 'Bollywood Hits', 'Chill Vibes', and 'Workout Mix', each created by a different user.
+
+INSERT into playlists(name,created_by) values ("Amit","Bollywood Hits");
+INSERT into playlists(name,created_by) values ("Rahul","Chill Vibes");
+INSERT into playlists(name,created_by) values ("Jack","Workout Mix");
+
+# Write an SQL SELECT query to display all playlists created by the user 'Amit' from the 'playlists' table.<br><br><em><strong>Hint:</strong> Use the WHERE clause to filter by the 'created_by' column.</em>
+
+SELECT * from playlists where name = "Amit";
+
+# Open ChatGPT or Copilot and ask it to explain the difference between a table, a row, and a column in SQL using an example from a food delivery app like Zomato. Paste the explanation you receive into your assignment.
+
+In SQL, database components are structured exactly like a spreadsheet. A table is the entire spreadsheet, a row is a single record, and a column is a specific piece of information about that record.To see how this works, let's look at how a food delivery app like Zomato stores data for a restaurant.🍽️ The Zomato Restaurant ExampleImagine Zomato has a spreadsheet (table) specifically to keep track of restaurants.Restaurant_ID (Column)Restaurant_Name (Column)Cuisine_Type (Column)Average_Rating (Column)101Pizza HutItalian4.2102Burger KingFast Food4.0103Wow! MomoChinese4.5🔍 Breaking Down the DifferencesTable (Restaurants): This is the entire collection of data shown above. It holds all the structured information about every single restaurant on the app. In SQL, you would query this entire block by writing FROM Restaurants.Row (Record): This is a single, horizontal entry in the table. For example, the entire middle line (102, Burger King, Fast Food, 4.0) is one row. It represents one unique entity—a single restaurant.Column (Field): This is a vertical category that defines what kind of data is being stored. For example, Cuisine_Type is a column. Every item in that vertical line tells you what kind of food the restaurant serves (Italian, Fast Food, Chinese).💡 Quick SummaryThink of it this way when browsing Zomato:The Table is the complete directory of all restaurants.A Row is the specific restaurant page you click on.A Column is a specific detail on that page, like the delivery time or price for two.
+
+
