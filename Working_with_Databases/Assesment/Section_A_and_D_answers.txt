@@ -1,0 +1,58 @@
+DATA SCIENCE M4-A1 — SECTION A ANSWERS
+
+1. Missing values:
+With 50,000 rows and 14% missing delivery times, dropping rows would discard about 7,000 records and may introduce bias. I would prefer imputation. Delivery time is commonly right-skewed because of delays, so the median is more robust than the mean. First inspect skewness; if strongly skewed, use the median.
+
+Code:
+df["delivery_time_mins"] = df["delivery_time_mins"].fillna(df["delivery_time_mins"].median())
+df["customer_rating"] = pd.to_numeric(df["customer_rating"], errors="coerce")
+
+2. Surge days:
+mean_orders = np.mean(orders)
+std_orders = np.std(orders)
+mask = orders > mean_orders + 1.5 * std_orders
+surge_revenue = revenue[mask]
+total_surge_revenue = np.sum(surge_revenue)
+
+A Boolean mask is a True/False array with one value per element. Boolean indexing selects only the True elements. NumPy performs vectorized element-wise operations in optimized code, generally making this faster and cleaner than a Python loop.
+
+3. EDA:
+(a) Delivery time vs customer rating = bivariate analysis. Use a Seaborn scatterplot because it directly shows the relationship, direction and outliers between two numeric variables. A line plot is unsuitable because there is no natural ordered/time x-axis.
+
+(b) Average order value across restaurant categories = bivariate analysis. Use a Seaborn boxplot because it compares a numeric distribution across categorical groups and shows spread/outliers. A line plot implies an ordered continuous axis.
+
+4. SQL JOIN:
+Use LEFT JOIN:
+SELECT r.name, COALESCE(SUM(o.order_value), 0) AS total_revenue
+FROM restaurants r
+LEFT JOIN orders o ON r.restaurant_id = o.restaurant_id
+GROUP BY r.restaurant_id, r.name;
+
+LEFT JOIN keeps every restaurant, including those without orders. SUM is NULL for an unmatched restaurant, so COALESCE changes it to 0. INNER JOIN would remove restaurants with no matching orders.
+
+5. Window functions:
+Use RANK() (or DENSE_RANK()) for ranking and LAG() for the previous agent's count:
+RANK() OVER (PARTITION BY city ORDER BY completed_deliveries DESC)
+LAG(completed_deliveries) OVER (PARTITION BY city ORDER BY completed_deliveries DESC)
+
+PARTITION BY city independently ranks agents within each city and LAG returns the previous ranked row while preserving row-level detail. This is more direct and maintainable than a self-join/correlated subquery.
+
+6. CTE vs nested subquery:
+A CTE names the intermediate result, improving readability, testing and debugging, and it can be reused within a query. A nested subquery is fine for a small one-off intermediate result used only once. I would prefer a nested subquery when the intermediate logic is very small and readability is not harmed.
+
+Example CTE:
+WITH top_categories AS (
+  SELECT category FROM restaurants
+  GROUP BY category ORDER BY COUNT(*) DESC LIMIT 5
+)
+SELECT o.*
+FROM orders o
+JOIN restaurants r ON r.restaurant_id = o.restaurant_id
+JOIN top_categories t ON t.category = r.category;
+
+
+SECTION D — AI PROMPT
+Create a Python 3 program using sqlite3, pandas and matplotlib that connects to a SQLite database containing a food delivery orders table with columns order_id, restaurant_name, category, order_value, rating and delivery_time_mins. Find the top 3 restaurants by average customer rating, excluding restaurants with fewer than 5 orders. Load the SQL result into Pandas, add revenue_share_pct for each restaurant's share of combined top-3 revenue, and plot a horizontal bar chart of the top 3 restaurants by average rating with the revenue-share percentage displayed on each bar. Handle a missing database file and empty query results with clear messages.
+
+SECTION D — TEST/DEBUG NOTE
+The AI version had a chart-labeling problem: it sorted the data for plotting but used positions from the unsorted DataFrame when retrieving revenue-share labels. This could attach a percentage to the wrong restaurant. I fixed it by creating a sorted/reset-index DataFrame and pairing each plotted bar with its corresponding revenue share using zip(). I also added missing-file, empty-result, zero-revenue and database-error handling.

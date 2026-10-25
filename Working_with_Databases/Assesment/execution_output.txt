@@ -1,0 +1,69 @@
+TASK 1 - NumPy
+Total orders: 12279
+Total revenue: 743376.12
+Mean orders: 409.3
+Std deviation: 195.9
+Highest revenue day: 11
+Peak-day count: 4
+Peak-day revenue: 127641.5
+Weekly totals: [2284 2365 2409 3201 2020]
+
+TASK 2 - Data Cleaning
+Nulls before:
+ order_id              0
+customer_name         1
+restaurant_name       0
+category              1
+delivery_time_mins    2
+order_value           1
+rating                1
+dtype: int64
+Nulls after:
+ order_id              0
+customer_name         0
+restaurant_name       0
+category              0
+delivery_time_mins    0
+order_value           0
+rating                0
+dtype: int64
+Shape before: (23, 7)
+Shape after: (20, 7)
+Outliers:
+ Empty DataFrame
+Columns: [order_id, customer_name, restaurant_name, category, delivery_time_mins, order_value, rating]
+Index: []
+Dashboard saved: /mnt/data/M4_A1_complete/food_delivery_dashboard.png
+
+TASK 4 - Full report
+  restaurant_id           name      category      city  total_orders  total_revenue  avg_rating  revenue_rank
+             8     Urban Dine Multi-Cuisine Ahmedabad             3         2450.0        4.60             1
+             3    Curry House  North Indian Ahmedabad             3         1950.0        4.70             2
+             1      Spice Hub  North Indian Ahmedabad             4         1830.0        4.42             3
+             5 Biryani Palace       Biryani Ahmedabad             3         1770.0        4.40             4
+             7      Taco Town       Mexican Ahmedabad             3         1510.0        4.10             5
+             2    Pizza Point     Fast Food Ahmedabad             3         1050.0        4.00             6
+             4     South Bowl  South Indian Ahmedabad             3          850.0        4.00             7
+             6     Cafe Bliss          Cafe Ahmedabad             3          720.0        3.80             8
+
+TOP 5
+  restaurant_id           name      category      city  total_orders  total_revenue  avg_rating  revenue_rank
+             8     Urban Dine Multi-Cuisine Ahmedabad             3         2450.0        4.60             1
+             3    Curry House  North Indian Ahmedabad             3         1950.0        4.70             2
+             1      Spice Hub  North Indian Ahmedabad             4         1830.0        4.42             3
+             5 Biryani Palace       Biryani Ahmedabad             3         1770.0        4.40             4
+             7      Taco Town       Mexican Ahmedabad             3         1510.0        4.10             5
+Excel report saved: /mnt/data/M4_A1_complete/food_delivery_report.xlsx
+
+All Section B/C files generated successfully.
+
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/spreadsheet_warmup.py", line 718, in _warm_feature_flows
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/spreadsheet_warmup.py", line 509, in _warm_drawing_and_image_flows
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/generated/interface/models.py", line 32861, in bring_to_front
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/rpc/remote.py", line 764, in __call__
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/rpc/client.py", line 175, in call
+artifact_tool.rpc.client.RemoteError: Element ordering requires an owning element collection.
