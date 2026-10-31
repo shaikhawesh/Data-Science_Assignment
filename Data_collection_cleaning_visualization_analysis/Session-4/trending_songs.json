@@ -1,0 +1,26 @@
+[
+    {
+        "song": "Blinding Lights",
+        "artist": "The Weeknd",
+        "streams": 4500000,
+        "genre": "Pop"
+    },
+    {
+        "song": "Shape of You",
+        "artist": "Ed Sheeran",
+        "streams": 4200000,
+        "genre": "Pop"
+    },
+    {
+        "song": "Stay",
+        "artist": "The Kid LAROI",
+        "streams": 3800000,
+        "genre": "Pop"
+    },
+    {
+        "song": "Perfect",
+        "artist": "Ed Sheeran",
+        "streams": 3500000,
+        "genre": "Pop"
+    }
+]

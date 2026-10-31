@@ -1,0 +1,9 @@
+transaction_id;customer;amount;status;merchant
+1001;Rahul;500.0;Success;Amazon
+1002;Priya;;Success;Flipkart
+1003;Amit;750.0;;Swiggy
+1004;Neha;1200.0;Failed;
+1005;Raj;;Success;Zomato
+1006;Anita;650.0;Success;Amazon
+1007;Vikas;900.0;Failed;Myntra
+1008;Pooja;1100.0;;Flipkart
