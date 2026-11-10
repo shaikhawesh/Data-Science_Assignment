@@ -1,0 +1,6 @@
+finding,evidence
+Overall default incidence,Default rate = 0.125 (188 of 1500 applications).
+Credit score and default,Default rate for credit scores below 650 = 0.222.
+Loan-to-income risk,Default rate where loan exceeds 10 times monthly income = 0.222.
+Income comparison,Mean monthly income: defaulters ₹73596; non-defaulters ₹83388.
+Employment segment,Highest employment default rate = 0.150 for Salaried.
